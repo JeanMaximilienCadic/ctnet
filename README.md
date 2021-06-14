@@ -42,7 +42,7 @@ The main execution:
 ```python
 from ctnet.modules import CTNet
 from torch.optim import Adam
-from ai3d.data.dataset import CTDataset
+from ctdataset.dataset import CTDataset
 from torch.utils.data import DataLoader
 import os
 from torchsummary import summary
