@@ -58,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument('dev_ply_folder')
     ################################################ HP ################################################################
     parser.add_argument('--dim', default=64, type=int)
-    parser.add_argument('--bs', default=100, type=int)
+    parser.add_argument('--bs', default=10, type=int)
     parser.add_argument('--strech_box', action="store_true")
     parser.add_argument('--lr', default=pow(10, -3), type=float)
     parser.add_argument('--no_shuffle', action="store_true")
@@ -84,7 +84,10 @@ if __name__ == "__main__":
                                                    batch_size=args.bs,
                                                    num_workers=args.num_workers,
                                                    shuffle=not args.no_shuffle,
-                                                   drop_last=True
+                                                   drop_last=True,
+                                                   pin_memory=True,
+                                                   persistent_workers=True,
+                                                   prefetch_factor=5
                                                    )
                                         for dataset in [train_dataset, dev_dataset]])
 
@@ -101,7 +104,6 @@ if __name__ == "__main__":
         shuffle=not args.no_shuffle)
 
     trainer.run(epochs=args.epochs)
-
 
 ```
 ### How to
