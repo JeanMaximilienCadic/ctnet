@@ -1,11 +1,10 @@
-numpy==1.19.2
-six==1.15.0
-#tensorflow-gpu==2.4.1
+numpy
+six
 nmesh
 absl-py
-torchvision==0.3
-torch==1.8
+torchvision
+torch
 torchsummary
 tqdm
 sklearn
-#ai3d
+ctdataset

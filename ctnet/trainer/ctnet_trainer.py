@@ -190,7 +190,6 @@ class CTNetTrainer(DefaultTrainer):
                 print(">> Could not restart from {continue_from}... ".format(continue_from=continue_from))
 
     def fit_epoch(self, iter=1):
-        # self.train_loader.dataset.shuffle() if self.shuffle else None
         self.model.train()
         for i, (x, y, _, _, _) in tqdm(enumerate(self.train_loader), total=len(self.train_loader), desc=self.desc()):
             x = x.cuda()
@@ -210,8 +209,6 @@ class CTNetTrainer(DefaultTrainer):
         self.optimizer.step()
         self.losses["history"]["train"].append(loss.item())
         self.f1_score["history"]["train"].append(f1_score(y, _y))
-
-
 
     def eval_epoch(self):
         self.flag = True
@@ -242,7 +239,6 @@ class CTNetTrainer(DefaultTrainer):
             os.makedirs(parent(self.model_path), exist_ok=True)
             torch.save(self.model.state_dict(), self.model_path)
 
-
     def eval(self, x, y, ids=None):
         self.model.eval()
         with torch.no_grad():
@@ -259,7 +255,7 @@ class CTNetTrainer(DefaultTrainer):
                 output_dir = f"__data__/eval_xyz/{self.model.id}/{self.epoch}"
                 output_dir+= ids[0] if ids is not None else ""
                 os.makedirs(output_dir, exist_ok=True)
-                np.savetxt("{output_dir}/ai3d_y.xyz".format(output_dir=output_dir), _ycp)
+                np.savetxt("{output_dir}/_y.xyz".format(output_dir=output_dir), _ycp)
                 np.savetxt("{output_dir}/x.xyz".format(output_dir=output_dir), xcp)
                 np.savetxt("{output_dir}/y.xyz".format(output_dir=output_dir), ycp)
                 self.flag = False
