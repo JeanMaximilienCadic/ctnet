@@ -1,2 +1,4 @@
 .idea
 .eggs
+nohup*
+__data__
