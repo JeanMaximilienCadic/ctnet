@@ -1,12 +1,5 @@
-import logging
 from torch import nn
 import numpy as np
-from gnutools.fs import parent
-from nmesh import NMesh
-import cv2
-from math import pi
-import torch
-import os
 
 
 class CTBlockLatent(nn.Sequential):
@@ -109,7 +102,6 @@ class CTNet(nn.Module):
             CTBlockInv(filters=[64, 1]),
 
         )
-        #print(self)
 
     def forward(self, x):
         x = x.reshape(x.shape[0], 1, x.shape[1], x.shape[2], x.shape[3])
@@ -121,60 +113,3 @@ class CTNet(nn.Module):
         x = nn.Sigmoid()(x)
         x = x.reshape(x.shape[0], x.shape[2], x.shape[3], x.shape[4])
         return x
-
-    def test(self,
-             x,
-             y,
-             all_ops,
-             ids,
-             xpaths,
-             root_output="__data__/test_xyz",
-             t=0.5,
-             device="cuda",
-             reconstruct=True,
-             snapshot=True):
-        self.eval()
-        with torch.no_grad():
-            if  device=="cuda":
-                x, y = x.cuda(), y.cuda()
-            _y = self(x)
-            for k in range(len(x)):
-                try:
-                    _ycp = np.argwhere(np.array(_y[k].cpu().detach().numpy()) >= t)
-                    xcp = np.argwhere(np.array(x[k].cpu().detach().numpy()) == 1.0)
-                    ycp = np.argwhere(np.array(y[k].cpu().detach().numpy()) == 1.0)
-                    output_dir = f"{root_output}/{self.id}/"
-                    output_dir+= f"{ids[k]}"
-                    output_dir = os.path.realpath(output_dir)
-                    os.makedirs(output_dir, exist_ok=True)
-                    output_file = os.path.realpath(f"{output_dir}/ai3d_y.xyz")
-                    np.savetxt(output_file, _ycp)
-                    np.savetxt(f"{output_dir}/x.xyz", xcp)
-                    np.savetxt(f"{output_dir}/y.xyz", ycp)
-                    os.system(f"cp -r '{output_dir}' /tmp")
-                    os.system(f"sh /usr/local/sbin/ai3d_reconstruct '{output_file.replace(parent(output_dir), '/tmp')}'")
-                    os.system(f"cp '/tmp/{ids[k]}/y.ply' '{output_dir}'")
-                    os.system(f"rm -r '/tmp/{ids[k]}'")
-                    m = NMesh(output_file.replace("ai3d_y.xyz", "y.ply"))
-
-                    #Reverse the ops
-                    for op_name, value in all_ops:
-                        op_name = op_name[k]
-                        value = value[k].numpy()
-                        print(op_name, value)
-                        if op_name == "scale":
-                            m.vertices*=value
-                        else:
-                            m.vertices+=value
-                    m.set_color([255, 255, 0, 255])
-                    m.export(output_file.replace("ai3d_y.xyz", "y_origin.ply"))
-                    os.system(f"cp {xpaths[k]} {parent(output_file)}")
-                    m = NMesh(list=[NMesh(output_file.replace("ai3d_y.xyz", "x.ply")), m])
-                    m.rotate(axis_rotation=0, theta=-pi/2)
-                    img = m.shot()
-                    cv2.imwrite(output_file.replace("ai3d_y.xyz", f"{ids[k]}.png"), img)
-                except ValueError:
-                    logging.warning(f"Could not process {ids[k]}")
-
-
-
