@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6e2f5c8-641a-40cf-9e7a-97c7a7b5e20c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctnet/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ctnet/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctnet/modules/ctnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/ctnet/modules/ctnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctnet/trainer/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ctnet/trainer/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctnet/trainer/ctnet_trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/ctnet/trainer/ctnet_trainer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctnet/trainer/functional.py" beforeDir="false" afterPath="$PROJECT_DIR$/ctnet/trainer/functional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/ctnet-1.0.0-py3-none-any.whl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ctnet-1.0.0-py3-none-any.whl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +11,31 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="1.0.1" />
+                    <option name="lastUsedInstant" value="1623658326" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="1.0.0" />
+                    <option name="lastUsedInstant" value="1623658325" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectId" id="1tvgK7qOzzQgxHy6oo3pxLhDzJg" />
   <component name="ProjectViewState">
@@ -44,7 +62,7 @@
       <updated>1623654913216</updated>
       <workItem from="1623654918073" duration="449000" />
       <workItem from="1623655456977" duration="582000" />
-      <workItem from="1623658045687" duration="230000" />
+      <workItem from="1623658045687" duration="308000" />
     </task>
     <servers />
   </component>
