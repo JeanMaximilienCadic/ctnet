@@ -4,7 +4,7 @@ from ctnet import __version__
 setup(
     name='ctnet',
     version=__version__,
-    long_description="",
+    long_description="ctnet",
     packages=[
         "ctnet",
         "ctnet.infer",
@@ -18,7 +18,7 @@ setup(
     python_requires='>=3.6',
     install_requires=[d.rsplit()[0] for d in open("requirements.txt").readlines()],
     author_email='support@cadic.jp',
-    description='GNU Tools for python',
+    description='ctnet',
     classifiers=[
         "Programming Language :: Python :: 3.6",
         "License :: OSI Approved :: MIT License",
