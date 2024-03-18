@@ -8,3 +8,4 @@ torchsummary
 tqdm
 sklearn
 ctdataset
+black>=24.3.0 # not directly required, pinned by Snyk to avoid a vulnerability
